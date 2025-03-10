@@ -13,12 +13,15 @@ public class Flight {
 	private Long id; 
 
     @Enumerated(EnumType.STRING)
-    private Location origin;
+	@Column(columnDefinition = "ENUM('Tallinn')")
+	private Location origin;
 
 	private String destination; 
 	private LocalDate start_date; 
     private LocalDate end_date; 
     private int price; 
+
+	public Flight() {}
 
 	public Flight(Location origin, String destination, LocalDate start_date, LocalDate end_date, int price) { 
 		this.origin = origin; 
