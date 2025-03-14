@@ -2,21 +2,21 @@ package com.development.flight_planning_api.controller;
 
 import com.development.flight_planning_api.model.Flight;
 import com.development.flight_planning_api.service.FlightService;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/flights")
+@RequiredArgsConstructor
+
 public class FlightController {
     private final FlightService flightService;
 
-    @Autowired
-    public FlightController(FlightService flightService) {
-        this.flightService = flightService;
-    }
-
+    // Get all flights
     @GetMapping
     public List<Flight> getAllFlights() {
         return flightService.getAllFlights();
