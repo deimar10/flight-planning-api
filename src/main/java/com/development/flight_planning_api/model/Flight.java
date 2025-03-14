@@ -24,7 +24,7 @@ public class Flight {
 	private Location origin;
 
 	private String destination; 
-	private LocalDate start_date; 
-    private LocalDate end_date; 
+	private LocalDate startDate; 
+    private LocalDate endDate; 
     private int price; 
 } 
