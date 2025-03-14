@@ -11,7 +11,6 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,16 +22,16 @@ public class SeatService {
     public List<Seat> getFlightSeats(Long flightId) throws Exception {
         Flight flight = flightRepository.findById(flightId).orElseThrow(EntityNotFoundException::new);
         List<Seat> seats = seatRepository.findByFlight(flight);
-        return seats;
-        /*
-        List<Seat> seatsList = seats.stream().map(seat -> Seat.builder()
+
+        return seats.stream().map(seat -> Seat.builder()
             .id(seat.getId())
+            .flightId(seat.getFlightId())
             .seatNumber(seat.getSeatNumber())
-            .isOccupied(seat.get)
+            .isOccupied(seat.getIsOccupied())
             .hasWindow(seat.getHasWindow())
             .hasLegroom(seat.getHasLegroom())
-            .closeToExit(seat.getCloseToExit()) 
+            .closeToExit(seat.getCloseToExit())
             .build()
-        ).toList(); */
+        ).collect(Collectors.toList());
     }
 }

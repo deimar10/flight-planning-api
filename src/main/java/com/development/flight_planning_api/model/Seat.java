@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-/* @Entity */
+@Entity
 @Table(name = "seats") 
 @SuperBuilder
 @NoArgsConstructor
@@ -28,8 +28,8 @@ public class Seat {
     private Long flightId;
 
     private String seatNumber; 
-    private boolean isOccupied; 
-    private boolean hasWindow; 
-    private boolean hasLegroom; 
-    private boolean closeToExit; 
+    private Boolean isOccupied; 
+    private Boolean hasWindow; 
+    private Boolean hasLegroom; 
+    private Boolean closeToExit; 
 }
