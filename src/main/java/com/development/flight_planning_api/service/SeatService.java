@@ -6,8 +6,8 @@ import com.development.flight_planning_api.model.Flight;
 import com.development.flight_planning_api.model.Seat;
 import com.development.flight_planning_api.repository.FlightRepository;
 import com.development.flight_planning_api.repository.SeatRepository;
+import com.development.flight_planning_api.exception.ResourceNotFoundException;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -20,8 +20,12 @@ public class SeatService {
     private final FlightRepository flightRepository;
 
     public List<Seat> getFlightSeats(Long flightId) throws Exception {
-        Flight flight = flightRepository.findById(flightId).orElseThrow(EntityNotFoundException::new);
+        Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new ResourceNotFoundException("Flight with ID " + flightId + " not found"));
         List<Seat> seats = seatRepository.findByFlight(flight);
+
+        if (seats == null || seats.isEmpty()) {
+            throw new ResourceNotFoundException("No seats were found for flight ID: " + flightId);
+        }
 
         return seats.stream().map(seat -> Seat.builder()
             .id(seat.getId())
