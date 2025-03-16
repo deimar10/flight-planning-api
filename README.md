@@ -7,7 +7,7 @@
     * Java Development Kit (JDK): Version 17 or above (check version using ```java -version```)
     * Maven: Build tool for Java (check version using ```mvn -version```)
     * Docker: You can download Docker from https://www.docker.com/products/docker-desktop/
-    * MySQL: Ensure you have a MySQL server running locally or via Docker
+    * MySQL: You can download MySQL from https://www.mysql.com/downloads/
     * git: You can download Git from https://git-scm.com/downloads
   * Clone the Repository
     * ```git clone <repository_url>```
