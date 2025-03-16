@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0-oracle
+    ports:
+      - "3306:3306"
+    volumes:
+      - ~/apps/mysql:/var/lib/mysql
+      - ./flight_planner.sql:/docker-entrypoint-initdb.d/dump.sql:ro
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=qwerty
+      - MYSQL_DATABASE=flight_planner
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pqwerty"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
